@@ -20,13 +20,6 @@ public class ExceptionInterceptor {
 		return new ResponseEntity<>(exceptionModel, exceptionModel.getHttpStatus());
 	}
 	
-	@ExceptionHandler(value = {UserPermissionsException.class})
-	public final ResponseEntity<ExceptionModel> handleUserPermissionsException(UserPermissionsException ex, WebRequest request) {
-		ExceptionModel exceptionModel = generateException(ex, request, HttpStatus.FORBIDDEN);
-		
-		return new ResponseEntity<>(exceptionModel, exceptionModel.getHttpStatus());
-	}
-	
 	@ExceptionHandler(value = {NoSuchElementException.class})
 	public final ResponseEntity<ExceptionModel> handleNoSuchElementException(RuntimeException ex, WebRequest request) {
 		ExceptionModel exceptionModel = generateException(ex, request, HttpStatus.NOT_FOUND);

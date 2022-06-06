@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.softnunes.cadastroclientes.application.dto.ClienteDTO;
 import br.com.softnunes.cadastroclientes.services.impl.ClienteServiceImpl;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Authorization;
 
 @RestController
 @RequestMapping(path = "/v1/clientes")
@@ -28,7 +27,7 @@ public class ClienteController {
 	private ClienteServiceImpl clienteService;
 	
 	@PostMapping(path = "/novo-cliente", consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "Cadastra um novo cliente", authorizations = @Authorization(value = "Bearer")) 
+	@ApiOperation(value = "Cadastra um novo cliente") 
 	public ResponseEntity<HttpStatus> novoCliente(@Valid @RequestBody ClienteDTO clienteDTO) {
 		clienteService.novoCliente(clienteDTO);
 		
@@ -36,7 +35,7 @@ public class ClienteController {
 	}
 	
 	@PatchMapping(path = "/editar-cliente")
-	@ApiOperation(value = "Editar um cliente", authorizations = @Authorization(value = "Bearer"))
+	@ApiOperation(value = "Editar um cliente")
 	public ResponseEntity<HttpStatus> editarCliente(@RequestBody ClienteDTO clienteDTO) {
 		clienteService.editarCliente(clienteDTO);
 		
@@ -44,25 +43,25 @@ public class ClienteController {
 	}
 	
 	@DeleteMapping(path = "/remover-cliente-por-id/{id}")
-	@ApiOperation(value = "Remover cliente por ID", authorizations = @Authorization(value = "Bearer"))
+	@ApiOperation(value = "Remover cliente por ID")
 	public ResponseEntity<HttpStatus> removerClientePorID(@PathVariable("id") Integer id) {
 		return new ResponseEntity<>(HttpStatus.OK);	
 	}
 	
 	@GetMapping(path = "/buscar-cliente-por-id/{id}")
-	@ApiOperation(value = "Busca um cliente por ID", authorizations = @Authorization(value = "Bearer"))
+	@ApiOperation(value = "Busca um cliente por ID")
 	public ResponseEntity<ClienteDTO> buscarClientePorID(@PathVariable("id") Integer id) {
 		return ResponseEntity.ok(clienteService.buscarClientePorID(id));
 	}
 	
 	@GetMapping(path = "/buscar-cliente-por-email/{email}")
-	@ApiOperation(value = "Busca um cliente por ID", authorizations = @Authorization(value = "Bearer"))
+	@ApiOperation(value = "Busca um cliente por ID")
 	public ResponseEntity<ClienteDTO> buscarClientePorEmail(@PathVariable("email") String email) {
 		return ResponseEntity.ok(clienteService.buscarClientePorEmail(email));
 	}
 	
 	@GetMapping(path = "/buscar-cliente-por-nome/{nome}")
-	@ApiOperation(value = "Busca um cliente pelo nome", authorizations = @Authorization(value = "Bearer"))
+	@ApiOperation(value = "Busca um cliente pelo nome")
 	public ResponseEntity<ClienteDTO> buscarClientePorNome(@PathVariable("nome") String nome) {
 		return ResponseEntity.ok(clienteService.buscarClientePorNome(nome));
 	}

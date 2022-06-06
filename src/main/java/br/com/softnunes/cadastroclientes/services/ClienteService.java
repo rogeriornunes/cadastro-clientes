@@ -1,9 +1,8 @@
 package br.com.softnunes.cadastroclientes.services;
 
 import br.com.softnunes.cadastroclientes.application.dto.ClienteDTO;
-import br.com.softnunes.cadastroclientes.entities.cliente.Cliente;
 
-public interface ClienteServiceInterface {
+public interface ClienteService {
 	
 	void novoCliente(ClienteDTO clienteDTO);
 	
@@ -16,8 +15,5 @@ public interface ClienteServiceInterface {
 	ClienteDTO buscarClientePorEmail(String email);
 	
 	ClienteDTO buscarClientePorNome(String nome);
-	
-	Cliente getAuthenticatedDetails();
-	
-	void isAdmin();
+
 }
