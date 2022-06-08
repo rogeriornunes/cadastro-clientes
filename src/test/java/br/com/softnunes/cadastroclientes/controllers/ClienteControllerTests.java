@@ -46,8 +46,6 @@ public class ClienteControllerTests {
 		clienteDTO.setNomeCompleto("Teste da Silva Sauro");
 		clienteDTO.setEmail("testeint@teste.com");
 		clienteDTO.setCidade(new CidadeDTO(null, "São Paulo", new EstadoDTO(null, "São Paulo", "SP")));
-		clienteDTO.setIsAdmin(false);
-		clienteDTO.setSenha("123456");
 		clienteDTO.setSexo(SexoEnum.M);
 		clienteDTO.setDataNascimento(new Date());
 		
@@ -64,8 +62,6 @@ public class ClienteControllerTests {
 		clienteDTO.setNomeCompleto("Teste da Silva Sauro");
 		clienteDTO.setEmail("testeint@teste.com");
 		clienteDTO.setCidade(new CidadeDTO(null, "São Paulo", new EstadoDTO(null, "São Paulo", "SP")));
-		clienteDTO.setIsAdmin(false);
-		clienteDTO.setSenha("123456");
 		clienteDTO.setSexo(SexoEnum.M);
 		clienteDTO.setDataNascimento(new Date());
 		

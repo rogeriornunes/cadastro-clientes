@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO;
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO.CidadeInterfaceDTO;
-import br.com.softnunes.cadastroclientes.entities.cidade.Cidade;
+import br.com.softnunes.cadastroclientes.entities.Cidade;
 
 public interface CidadeService {
 	

@@ -1,11 +1,10 @@
 package br.com.softnunes.cadastroclientes.infrastructure.repositories.mappers;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import br.com.softnunes.cadastroclientes.application.dto.ClienteDTO;
-import br.com.softnunes.cadastroclientes.entities.cliente.Cliente;
+import br.com.softnunes.cadastroclientes.entities.Cliente;
 
 @Mapper(
 	componentModel = "spring", 
@@ -13,8 +12,7 @@ import br.com.softnunes.cadastroclientes.entities.cliente.Cliente;
 )
 public interface ClienteMapper {
 	
-	@Mapping(target = "senha", ignore = true)
-	ClienteDTO toDTO(Cliente clienteEntity);
+	ClienteDTO toDTO(Cliente cliente);
 	
 	Cliente fromDTO(ClienteDTO clienteDTO);
 }

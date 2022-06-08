@@ -24,40 +24,39 @@ public class ClienteDTO {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataNascimento;
 	
-	private CidadeDTO cidade;
+	private Long telefone;
 	
-	private Boolean isAdmin;
-	
-	private String senha;
+	private String cpf;
 	
 	private Integer idade;
 	
+	private CidadeDTO cidade;
+	
+	private EnderecoDTO enderecoDTO;
+	
 	public ClienteDTO() {}
 
-	public ClienteDTO(Integer id, String nomeCompleto, String email, SexoEnum sexo, Date dataNascimento, CidadeDTO cidade,
-			Boolean isAdmin, String senha) {
-		
+	public ClienteDTO(Integer id, String nomeCompleto, String email, SexoEnum sexo,
+					Date dataNascimento, CidadeDTO cidade, Integer telefone, String cpf) {
 		this.id = id;
 		this.nomeCompleto = nomeCompleto;
 		this.email = email;
 		this.sexo = sexo;
 		this.dataNascimento = dataNascimento;
 		this.cidade = cidade;
-		this.isAdmin = isAdmin;
-		this.senha = senha;
 	}
 
-	public ClienteDTO(Integer id, String nomeCompleto, String email, SexoEnum sexo, Date dataNascimento, CidadeDTO cidade,
-			Boolean isAdmin, String senha, Integer idade) {
-		
+	public ClienteDTO(Integer id, String nomeCompleto, String email, SexoEnum sexo,
+					Date dataNascimento, CidadeDTO cidade, Long telefone, String cpf,
+					Integer idade) {
 		this.id = id;
 		this.nomeCompleto = nomeCompleto;
 		this.email = email;
 		this.sexo = sexo;
 		this.dataNascimento = dataNascimento;
 		this.cidade = cidade;
-		this.isAdmin = isAdmin;
-		this.senha = senha;
+		this.telefone = telefone;
+		this.cpf = cpf;
 		this.idade = idade;
 	}
 
@@ -101,22 +100,30 @@ public class ClienteDTO {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Boolean getIsAdmin() {
-		return isAdmin;
+	public Long getTelefone() {
+		return telefone;
 	}
 
-	public void setIsAdmin(Boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setTelefone(Long telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public Integer getIdade() {
+		return idade;
 	}
 	
-	public String getSenha() {
-		return senha;
+	public void setIdade(Integer idade) {
+		this.idade = idade;
 	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
+	
 	public CidadeDTO getCidade() {
 		return cidade;
 	}
@@ -124,12 +131,13 @@ public class ClienteDTO {
 	public void setCidade(CidadeDTO cidade) {
 		this.cidade = cidade;
 	}
-
-	public Integer getIdade() {
-		return idade;
+	
+	public EnderecoDTO getEnderecoDTO() {
+		return enderecoDTO;
 	}
 
-	public void setIdade(Integer idade) {
-		this.idade = idade;
+	public void setEnderecoDTO(EnderecoDTO enderecoDTO) {
+		this.enderecoDTO = enderecoDTO;
 	}
+
 }

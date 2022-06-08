@@ -5,12 +5,11 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import br.com.softnunes.cadastroclientes.entities.cidade.Cidade;
-import br.com.softnunes.cadastroclientes.entities.cliente.Cliente;
-import br.com.softnunes.cadastroclientes.entities.estado.Estado;
+import br.com.softnunes.cadastroclientes.entities.Cidade;
+import br.com.softnunes.cadastroclientes.entities.Cliente;
+import br.com.softnunes.cadastroclientes.entities.Estado;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.CidadeRepository;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.ClienteRepository;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.EstadoRepository;
@@ -79,31 +78,22 @@ public class DBInit {
 			}
 			
 			if (clienteRepository.count() == 0) {
-				Cliente cliente = new Cliente();
-				BCryptPasswordEncoder B_CRYPT = new BCryptPasswordEncoder();
-				
+				Cliente cliente = new Cliente();	
 				// Cadastra Admin
 				cliente.setNomeCompleto("Admin");
-				cliente.setIsAdmin(true);
 				cliente.setSexo(SexoEnum.M);
 				cliente.setCidade(this.cidadeRepository.findByNome("Porto Alegre").get());
 				cliente.setDataNascimento(new Date());
-				cliente.setSenha(B_CRYPT.encode("123456"));
 				cliente.setEmail("admin@admin.com.br");
-				
 				this.clienteRepository.saveAndFlush(cliente);
 				
 				// Cadastra usuário comum
 				cliente = new Cliente();
-				
 				cliente.setNomeCompleto("Usuário");
-				cliente.setIsAdmin(false);
 				cliente.setSexo(SexoEnum.M);
 				cliente.setCidade(this.cidadeRepository.findByNome("Belo Horizonte").get());
 				cliente.setDataNascimento(new Date());
-				cliente.setSenha(B_CRYPT.encode("123456"));
 				cliente.setEmail("usuario@usuario.com.br");
-				
 				this.clienteRepository.saveAndFlush(cliente);
 				
 				_aux++;

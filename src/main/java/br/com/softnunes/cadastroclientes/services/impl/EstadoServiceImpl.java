@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.softnunes.cadastroclientes.application.dto.EstadoDTO;
-import br.com.softnunes.cadastroclientes.entities.estado.Estado;
+import br.com.softnunes.cadastroclientes.entities.Estado;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.EstadoRepository;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.mappers.EstadoMapper;
 import br.com.softnunes.cadastroclientes.services.EstadoService;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO;
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO.CidadeInterfaceDTO;
-import br.com.softnunes.cadastroclientes.entities.cidade.Cidade;
+import br.com.softnunes.cadastroclientes.entities.Cidade;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.CidadeRepository;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.mappers.CidadeMapper;
 import br.com.softnunes.cadastroclientes.services.CidadeService;

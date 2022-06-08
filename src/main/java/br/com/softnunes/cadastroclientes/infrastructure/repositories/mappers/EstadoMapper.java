@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import br.com.softnunes.cadastroclientes.application.dto.EstadoDTO;
-import br.com.softnunes.cadastroclientes.entities.estado.Estado;
+import br.com.softnunes.cadastroclientes.entities.Estado;
 
 @Mapper(
 	componentModel = "spring", 

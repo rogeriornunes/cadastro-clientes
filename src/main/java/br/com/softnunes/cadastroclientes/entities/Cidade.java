@@ -1,13 +1,18 @@
-package br.com.softnunes.cadastroclientes.entities.estado;
+package br.com.softnunes.cadastroclientes.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Estado {
+@Table(name = "CIDADE")
+public class Cidade {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,15 +21,16 @@ public class Estado {
 	@Column()
 	private String nome;
 	
-	@Column()
-	private String sigla;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ESTADO_ID")
+	private Estado estado;
 	
-	public Estado() {}
+	public Cidade() {}
 	
-	public Estado(Integer id, String nome, String sigla) {
+	public Cidade(Integer id, String nome, Estado estado) {
 		this.id = id;
 		this.nome = nome;
-		this.sigla = sigla;
+		this.estado = estado;
 	}
 
 	public Integer getId() {
@@ -43,11 +49,11 @@ public class Estado {
 		this.nome = nome;
 	}
 
-	public String getSigla() {
-		return sigla;
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 }

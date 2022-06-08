@@ -1,4 +1,4 @@
-package br.com.softnunes.cadastroclientes.entities.cliente;
+package br.com.softnunes.cadastroclientes.entities;
 
 import java.util.Date;
 
@@ -17,9 +17,10 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import br.com.softnunes.cadastroclientes.entities.cidade.Cidade;
 import br.com.softnunes.cadastroclientes.utils.DateConverter;
 import br.com.softnunes.cadastroclientes.utils.enums.SexoEnum;
+
+
 
 @Entity
 @Table(name = "CLIENTE")
@@ -43,23 +44,27 @@ public class Cliente {
 	@Column(name = "DATA_NASCIMENTO")
 	private Date dataNascimento;
 	
+	@Column
+	private Long telefone; 
+	
+	@Column()
+	private String cpf;
+	
+	@Transient
+	private Integer idade;
+	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CIDADE_ID")
 	private Cidade cidade;
 	
-	@Column(name = "IS_ADMIN")
-	private Boolean isAdmin;
-	
-	@Column()
-	private String senha;
-	
-	@Transient
-	private Integer idade;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ENDERECO_ID")
+	private Endereco endereco;
 
 	public Cliente() {}
 	
-	public Cliente(Integer id, String nomeCompleto, String email, SexoEnum sexo, Date dataNascimento,
-			Cidade cidade, Boolean isAdmin, String senha) {
+	public Cliente(Integer id, String nomeCompleto, String email, SexoEnum sexo,
+					Date dataNascimento, Cidade cidade) {
 		super();
 		this.id = id;
 		this.nomeCompleto = nomeCompleto;
@@ -67,12 +72,10 @@ public class Cliente {
 		this.sexo = sexo;
 		this.dataNascimento = dataNascimento;
 		this.cidade = cidade;
-		this.isAdmin = isAdmin;
-		this.senha = senha;
 	}
 	
-	public Cliente(Integer id, String nomeCompleto, String email, SexoEnum sexo, Date dataNascimento,
-			Cidade cidade, Boolean isAdmin, String senha, Integer idade) {
+	public Cliente(Integer id, String nomeCompleto, String email, SexoEnum sexo,
+					Date dataNascimento, Cidade cidade, Integer idade, String cpf, Long telefone) {
 		super();
 		this.id = id;
 		this.nomeCompleto = nomeCompleto;
@@ -80,9 +83,9 @@ public class Cliente {
 		this.sexo = sexo;
 		this.dataNascimento = dataNascimento;
 		this.cidade = cidade;
-		this.isAdmin = isAdmin;
-		this.senha = senha;
 		this.idade = idade;
+		this.cpf = cpf;
+		this.telefone = telefone;
 	}
 
 	public Integer getId() {
@@ -125,22 +128,6 @@ public class Cliente {
 		this.cidade = cidade;
 	}
 
-	public Boolean getIsAdmin() {
-		return isAdmin;
-	}
-
-	public void setIsAdmin(Boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -151,13 +138,29 @@ public class Cliente {
 
 	public Integer getIdade() {
 		if (this.idade == null && this.dataNascimento != null) {
-			this.setIdade(DateConverter.getYearsDifferenceFromNow(DateConverter.dateToLocalDateConverter(this.dataNascimento)));
+			this.setIdade(DateConverter.getYearsDifferenceFromNow(
+							DateConverter.dateToLocalDateConverter(this.dataNascimento)));
 		}
-		
 		return this.idade;
 	}
 
 	public void setIdade(Integer idade) {
 		this.idade = idade;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public Long getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(Long telefone) {
+		this.telefone = telefone;
 	}
 }

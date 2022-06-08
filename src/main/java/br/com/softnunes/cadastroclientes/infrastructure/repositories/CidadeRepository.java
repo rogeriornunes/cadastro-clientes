@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO.CidadeInterfaceDTO;
-import br.com.softnunes.cadastroclientes.entities.cidade.Cidade;
+import br.com.softnunes.cadastroclientes.entities.Cidade;
 
 public interface CidadeRepository extends JpaRepository<Cidade, Integer>{
 	

@@ -5,11 +5,10 @@ import java.util.NoSuchElementException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.softnunes.cadastroclientes.application.dto.ClienteDTO;
-import br.com.softnunes.cadastroclientes.entities.cliente.Cliente;
+import br.com.softnunes.cadastroclientes.entities.Cliente;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.ClienteRepository;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.mappers.ClienteMapper;
 import br.com.softnunes.cadastroclientes.services.ClienteService;
@@ -26,8 +25,6 @@ public class ClienteServiceImpl implements ClienteService {
 	@Autowired
 	private ClienteMapper clienteMapper;
 	
-	private final BCryptPasswordEncoder B_CRIPT = new BCryptPasswordEncoder();
-	
 	@Override
 	public void novoCliente(ClienteDTO clienteDTO) {
 		try {
@@ -38,8 +35,6 @@ public class ClienteServiceImpl implements ClienteService {
 			Cliente clienteEntity = this.clienteMapper.fromDTO(clienteDTO);
 			
 			clienteEntity.setCidade(cidadeService.buscarPorNomeAndSiglaEstado(clienteDTO.getCidade().getNome(), clienteDTO.getCidade().getEstado().getSigla()));
-			clienteEntity.setSenha(B_CRIPT.encode(clienteDTO.getSenha()));
-			
 			this.clienteRepository.saveAndFlush(clienteEntity);
 			
 		} catch (Exception e) {
@@ -56,12 +51,7 @@ public class ClienteServiceImpl implements ClienteService {
 			
 			if (clienteDTO.getCidade() != null && clienteDTO.getCidade().getEstado() != null) {
 				cliente.setCidade(cidadeService.buscarPorNomeAndSiglaEstado(clienteDTO.getCidade().getNome(), clienteDTO.getCidade().getEstado().getSigla()));
-			}
-			
-			if (clienteDTO.getSenha() != null) {
-				cliente.setSenha(B_CRIPT.encode(clienteDTO.getSenha()));
-			}
-			
+			}	
 			this.clienteRepository.save(cliente);
 			
 		} catch (Exception e) {
@@ -92,6 +82,12 @@ public class ClienteServiceImpl implements ClienteService {
 	public ClienteDTO buscarClientePorNome(String nome) {	
 		return clienteMapper.toDTO(clienteRepository.findByNomeCompleto(nome).orElseGet(() -> {
 			throw new NoSuchElementException("Nenhum usuário foi encontrado com o nome: " + nome + ".");
+		}));
+	}
+
+	public ClienteDTO buscarClientePorCpf(String cpf) {
+		return clienteMapper.toDTO(clienteRepository.findByCpf(cpf).orElseGet(() -> {
+			throw new NoSuchElementException("Nenhum usuário foi encontrado com o CPF " + cpf + ".");
 		}));
 	}
 }

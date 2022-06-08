@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import br.com.softnunes.cadastroclientes.entities.estado.Estado;
+import br.com.softnunes.cadastroclientes.entities.Estado;
 
 public interface EstadoRepository extends JpaRepository<Estado, Integer>{
 	
