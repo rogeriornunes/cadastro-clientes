@@ -1,5 +1,7 @@
 package br.com.softnunes.cadastroclientes.application.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.softnunes.cadastroclientes.application.dto.ClienteDTO;
-import br.com.softnunes.cadastroclientes.services.impl.ClienteServiceImpl;
+import br.com.softnunes.cadastroclientes.services.ClienteService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(path = "/v1/clientes")
+@RequestMapping(path = "/v1/clientes", produces = { "application/json; charset=utf-8" })
 public class ClienteController {
 	
 	@Autowired
-	private ClienteServiceImpl clienteService;
+	private ClienteService clienteService;
 	
 	@PostMapping(path = "/novo-cliente", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Cadastra um novo cliente") 
@@ -70,5 +72,12 @@ public class ClienteController {
 	@ApiOperation(value = "Busca um cliente pelo nome")
 	public ResponseEntity<ClienteDTO> buscarClientePorNome(@PathVariable("nome") String nome) {
 		return ResponseEntity.ok(clienteService.buscarClientePorNome(nome));
+	}
+	
+	@ApiOperation(value = "Lista todos clientes de forma paginada") 
+	@GetMapping(path = "/lista-clientes/limite/{limite}/offset/{offset}")
+	public ResponseEntity<List<ClienteDTO>> listaClientes( @PathVariable("limite") Integer limite, 
+					@PathVariable("offset") Integer offset) {
+		return ResponseEntity.ok(clienteService.listaClientes(limite, offset));
 	}
 }

@@ -16,9 +16,10 @@ public class Cidade {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_CIDADE")
 	private Integer id;
 	
-	@Column()
+	@Column(name = "NOME_CIDADE")
 	private String nome;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

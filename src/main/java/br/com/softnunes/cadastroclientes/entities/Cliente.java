@@ -29,6 +29,7 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_CLIENTE")
 	private Integer id;
 	
 	@Column(name = "NOME_COMPLETO")
@@ -126,6 +127,14 @@ public class Cliente {
 
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getEmail() {

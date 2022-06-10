@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO;
 import br.com.softnunes.cadastroclientes.application.dto.EstadoDTO;
-import br.com.softnunes.cadastroclientes.services.impl.CidadeServiceImpl;
+import br.com.softnunes.cadastroclientes.services.CidadeService;
 
 @SpringBootTest
 public class CidadeControllerTests {
@@ -29,7 +29,7 @@ public class CidadeControllerTests {
 	private WebApplicationContext webApplicationContext;
 	
 	@MockBean
-	private CidadeServiceImpl cidadeService;
+	private CidadeService cidadeService;
 	
 
 	@BeforeEach

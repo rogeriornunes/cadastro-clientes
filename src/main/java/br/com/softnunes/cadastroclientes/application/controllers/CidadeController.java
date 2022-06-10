@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO;
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO.CidadeInterfaceDTO;
-import br.com.softnunes.cadastroclientes.services.impl.CidadeServiceImpl;
+import br.com.softnunes.cadastroclientes.services.CidadeService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
 public class CidadeController {
 	
 	@Autowired
-	private CidadeServiceImpl cidadeService;
+	private CidadeService cidadeService;
 	
 	@ApiOperation(value = "Cadastra uma nova cidade") 
 	@PostMapping(path = "/cadastrar-nova-cidade")

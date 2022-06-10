@@ -1,5 +1,7 @@
 package br.com.softnunes.cadastroclientes.services;
 
+import java.util.List;
+
 import br.com.softnunes.cadastroclientes.application.dto.ClienteDTO;
 
 public interface ClienteService {
@@ -16,4 +18,7 @@ public interface ClienteService {
 	
 	ClienteDTO buscarClientePorNome(String nome);
 
+	ClienteDTO buscarClientePorCpf(String cpf);
+
+	List<ClienteDTO> listaClientes(Integer limite, Integer offset);
 }

@@ -17,10 +17,10 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO;
 import br.com.softnunes.cadastroclientes.application.dto.ClienteDTO;
-import br.com.softnunes.cadastroclientes.application.dto.EstadoDTO;
-import br.com.softnunes.cadastroclientes.services.impl.ClienteServiceImpl;
+import br.com.softnunes.cadastroclientes.entities.Cidade;
+import br.com.softnunes.cadastroclientes.entities.Estado;
+import br.com.softnunes.cadastroclientes.services.ClienteService;
 import br.com.softnunes.cadastroclientes.utils.enums.SexoEnum;
 
 @SpringBootTest
@@ -32,7 +32,7 @@ public class ClienteControllerTests {
 	private WebApplicationContext webApplicationContext;
 	
 	@MockBean
-	private ClienteServiceImpl clienteService;
+	private ClienteService clienteService;
 	
 	@BeforeEach
   	public void setUp() {
@@ -45,7 +45,7 @@ public class ClienteControllerTests {
 		
 		clienteDTO.setNomeCompleto("Teste da Silva Sauro");
 		clienteDTO.setEmail("testeint@teste.com");
-		clienteDTO.setCidade(new CidadeDTO(null, "São Paulo", new EstadoDTO(null, "São Paulo", "SP")));
+		clienteDTO.setCidade(new Cidade(null, "São Paulo", new Estado(null, "São Paulo", "SP")));
 		clienteDTO.setSexo(SexoEnum.M);
 		clienteDTO.setDataNascimento(new Date());
 		
@@ -61,7 +61,7 @@ public class ClienteControllerTests {
 		
 		clienteDTO.setNomeCompleto("Teste da Silva Sauro");
 		clienteDTO.setEmail("testeint@teste.com");
-		clienteDTO.setCidade(new CidadeDTO(null, "São Paulo", new EstadoDTO(null, "São Paulo", "SP")));
+		clienteDTO.setCidade(new Cidade(null, "São Paulo", new Estado(null, "São Paulo", "SP")));
 		clienteDTO.setSexo(SexoEnum.M);
 		clienteDTO.setDataNascimento(new Date());
 		

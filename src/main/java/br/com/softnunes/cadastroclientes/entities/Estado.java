@@ -13,9 +13,10 @@ public class Estado {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_ESTADO")
 	private Integer id;
 	
-	@Column()
+	@Column(name = "NOME_ESTADO")
 	private String nome;
 	
 	@Column()

@@ -13,6 +13,7 @@ public class Endereco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_ENDERECO")
 	private Integer id;
 	
 	@Column()
@@ -20,21 +21,21 @@ public class Endereco {
 	
 	@Column()
 	private String cep;
-	
-	@Column()
-	private String complemento;
-	
 
 	@Column()
 	private Integer numero;
 	
+	@Column()
+	private String complemento;
+	
 	public Endereco() {}
 	
-	public Endereco(Integer id, String rua, String cep, Integer numero) {
+	public Endereco(Integer id, String rua, String cep, Integer numero, String complemento) {
 		this.id = id;
 		this.rua = rua;
 		this.cep = cep;
 		this.numero = numero;
+		this.complemento = complemento;
 	}
 
 	public Integer getId() {
@@ -61,19 +62,19 @@ public class Endereco {
 		this.cep = cep;
 	}
 
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
 	public Integer getNumero() {
 		return numero;
 	}
 
 	public void setNumero(Integer numero) {
 		this.numero = numero;
+	}
+	
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 }
