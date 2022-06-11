@@ -38,6 +38,7 @@ public class ClienteServiceImpl implements ClienteService {
 			Cliente cliente = this.clienteMapper.fromDTO(clienteDTO);
 			
 			cliente.setCidade(cidadeService.buscarPorNome(clienteDTO.getCidade().getNome()));
+			cliente.setEndereco(enderecoService.buscarPorCepNumero(clienteDTO.getEndereco().getCep(), clienteDTO.getEndereco().getNumero()));
 			this.clienteRepository.saveAndFlush(cliente);
 			
 		} catch (Exception e) {
