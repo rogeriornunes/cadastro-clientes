@@ -3,7 +3,6 @@ package br.com.softnunes.cadastroclientes.services;
 import java.util.List;
 
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO;
-import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO.CidadeInterfaceDTO;
 import br.com.softnunes.cadastroclientes.entities.Cidade;
 
 public interface CidadeService {
@@ -16,7 +15,7 @@ public interface CidadeService {
 	
 	Cidade buscarPorNomeAndSiglaEstado(String nome, String siglaEstado);
 	
-	List<CidadeInterfaceDTO> buscaCidadePeloNomeEstado(String nome, Integer limite, Integer offset);
+	List<CidadeDTO> buscaCidadePeloNomeEstado(String nome, Integer limite, Integer offset);
 	
-	List<CidadeInterfaceDTO> buscaCidadePelaSiglaEstado(String sigla, Integer limite, Integer offset);
+	List<CidadeDTO> buscaCidadePelaSiglaEstado(String sigla, Integer limite, Integer offset);
 }

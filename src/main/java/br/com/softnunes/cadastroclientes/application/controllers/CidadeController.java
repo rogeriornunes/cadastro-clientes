@@ -40,7 +40,7 @@ public class CidadeController {
 	
 	@ApiOperation(value = "Busca uma cidade pelo nome do Estado") 
 	@GetMapping(path = "/buscar-cidade-pelo-estado/nome/{nome}/limite/{limite}/offset/{offset}")
-	public ResponseEntity<List<CidadeInterfaceDTO>> buscarCidadePeloNomeEstado(@PathVariable("nome") String nome, 
+	public ResponseEntity<List<CidadeDTO>> buscarCidadePeloNomeEstado(@PathVariable("nome") String nome, 
 			@PathVariable("limite") Integer limite, @PathVariable("offset") Integer offset) {
 		
 		return ResponseEntity.ok(cidadeService.buscaCidadePeloNomeEstado(nome, limite, offset));
@@ -48,7 +48,7 @@ public class CidadeController {
 	
 	@ApiOperation(value = "Busca uma cidade pela sigla do Estado") 
 	@GetMapping(path = "/buscar-cidade-pelo-estado/sigla/{sigla}/limite/{limite}/offset/{offset}")
-	public ResponseEntity<List<CidadeInterfaceDTO>> buscarCidadePelaSiglaEstado(@PathVariable("sigla") String sigla, 
+	public ResponseEntity<List<CidadeDTO>> buscarCidadePelaSiglaEstado(@PathVariable("sigla") String sigla, 
 			@PathVariable("limite") Integer limite, @PathVariable("offset") Integer offset) {
 		
 		return ResponseEntity.ok(cidadeService.buscaCidadePelaSiglaEstado(sigla, limite, offset));

@@ -5,14 +5,14 @@ import br.com.softnunes.cadastroclientes.entities.Estado;
 
 public class EstadoConverter {
 	
-	public static Estado convertToEstado(EstadoDTO estadoDTO) {
-		Estado estado = new Estado();
+	public static EstadoDTO convertToEstado(EstadoDTO estadoDTO) {
+		EstadoDTO estado = new EstadoDTO();
 		estado.setNome(estadoDTO.getNome());
 		estado.setSigla(estadoDTO.getSigla());
 		return estado;
 	}
 	
-	public static EstadoDTO convertToDTO(Estado estado) {
+	public static EstadoDTO convertToDTO(EstadoDTO estado) {
 		EstadoDTO estadoDTO = new EstadoDTO();	
 		estadoDTO.setNome(estado.getNome());
 		estadoDTO.setSigla(estado.getSigla());

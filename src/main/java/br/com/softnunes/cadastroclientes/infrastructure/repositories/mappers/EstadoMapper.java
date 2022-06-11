@@ -12,7 +12,7 @@ import br.com.softnunes.cadastroclientes.entities.Estado;
 )
 public interface EstadoMapper {
 	
-	EstadoDTO toDTO(Estado estadoEntity);
+	EstadoDTO toDTO(Estado estado);
 	
 	Estado fromDTO(EstadoDTO estadoDTO);
 }

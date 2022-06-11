@@ -17,7 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO;
-import br.com.softnunes.cadastroclientes.application.dto.EstadoDTO;
+import br.com.softnunes.cadastroclientes.entities.Estado;
 import br.com.softnunes.cadastroclientes.services.CidadeService;
 
 @SpringBootTest
@@ -43,7 +43,7 @@ public class CidadeControllerTests {
 		CidadeDTO cidadeDTO = new CidadeDTO();
 		
 		cidadeDTO.setNome("Brasília");
-		cidadeDTO.setEstado(new EstadoDTO(null, "Distrido Federal", "DF"));
+		cidadeDTO.setEstado(new Estado(null, "Distrido Federal", "DF"));
 		
 		mockMvc.perform(MockMvcRequestBuilders.post("/v1/cidades/cadastrar-nova-cidade")
 				.content(new ObjectMapper().writeValueAsString(cidadeDTO))

@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import br.com.softnunes.cadastroclientes.entities.Cidade;
+import br.com.softnunes.cadastroclientes.entities.Endereco;
 import br.com.softnunes.cadastroclientes.utils.enums.SexoEnum;
 
 @JsonInclude(Include.NON_NULL)
@@ -30,14 +32,14 @@ public class ClienteDTO {
 	
 	private Integer idade;
 	
-	private CidadeDTO cidade;
+	private Cidade cidade;
 	
-	private EnderecoDTO enderecoDTO;
+	private Endereco endereco;
 	
 	public ClienteDTO() {}
 
 	public ClienteDTO(Integer id, String nomeCompleto, String email, SexoEnum sexo,
-					Date dataNascimento, CidadeDTO cidade, Integer telefone, String cpf) {
+					Date dataNascimento, Cidade cidade, Integer telefone, String cpf) {
 		this.id = id;
 		this.nomeCompleto = nomeCompleto;
 		this.email = email;
@@ -47,8 +49,8 @@ public class ClienteDTO {
 	}
 
 	public ClienteDTO(Integer id, String nomeCompleto, String email, SexoEnum sexo,
-					Date dataNascimento, CidadeDTO cidade, Long telefone, String cpf,
-					Integer idade) {
+					Date dataNascimento, Cidade cidade, Long telefone, String cpf,
+					Integer idade, Endereco endereco) {
 		this.id = id;
 		this.nomeCompleto = nomeCompleto;
 		this.email = email;
@@ -58,6 +60,7 @@ public class ClienteDTO {
 		this.telefone = telefone;
 		this.cpf = cpf;
 		this.idade = idade;
+		this.endereco = endereco;
 	}
 
 	public Integer getId() {
@@ -124,20 +127,24 @@ public class ClienteDTO {
 		this.idade = idade;
 	}
 	
-	public CidadeDTO getCidade() {
+	public Cidade getCidade() {
 		return cidade;
 	}
 
-	public void setCidade(CidadeDTO cidade) {
+	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
 	
-	public EnderecoDTO getEnderecoDTO() {
-		return enderecoDTO;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setEnderecoDTO(EnderecoDTO enderecoDTO) {
-		this.enderecoDTO = enderecoDTO;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
+}	
+	
+	
 
-}
+	
+

@@ -1,5 +1,6 @@
 package br.com.softnunes.cadastroclientes.services.impl;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.transaction.Transactional;
@@ -7,10 +8,12 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.softnunes.cadastroclientes.application.convert.ClienteConverter;
 import br.com.softnunes.cadastroclientes.application.dto.ClienteDTO;
 import br.com.softnunes.cadastroclientes.entities.Cliente;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.ClienteRepository;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.mappers.ClienteMapper;
+import br.com.softnunes.cadastroclientes.services.CidadeService;
 import br.com.softnunes.cadastroclientes.services.ClienteService;
 
 @Service
@@ -20,7 +23,7 @@ public class ClienteServiceImpl implements ClienteService {
 	private ClienteRepository clienteRepository;
 	
 	@Autowired
-	private CidadeServiceImpl cidadeService;
+	private CidadeService cidadeService;
 	
 	@Autowired
 	private ClienteMapper clienteMapper;
@@ -32,10 +35,10 @@ public class ClienteServiceImpl implements ClienteService {
 				throw new RuntimeException("Já existe um usuário com o mesmo e-mail cadastrado.");
 			}
 			
-			Cliente clienteEntity = this.clienteMapper.fromDTO(clienteDTO);
+			Cliente cliente = this.clienteMapper.fromDTO(clienteDTO);
 			
-			clienteEntity.setCidade(cidadeService.buscarPorNomeAndSiglaEstado(clienteDTO.getCidade().getNome(), clienteDTO.getCidade().getEstado().getSigla()));
-			this.clienteRepository.saveAndFlush(clienteEntity);
+			cliente.setCidade(cidadeService.buscarPorNome(clienteDTO.getCidade().getNome()));
+			this.clienteRepository.saveAndFlush(cliente);
 			
 		} catch (Exception e) {
 			throw new RuntimeException("Falha ao salvar novo cliente: " + e.getMessage());
@@ -89,5 +92,11 @@ public class ClienteServiceImpl implements ClienteService {
 		return clienteMapper.toDTO(clienteRepository.findByCpf(cpf).orElseGet(() -> {
 			throw new NoSuchElementException("Nenhum usuário foi encontrado com o CPF " + cpf + ".");
 		}));
+	}
+
+	@Override
+	public List<ClienteDTO> listaClientes(Integer limite, Integer offset) {
+		List<Cliente> clientes = clienteRepository.listaClientes(limite < 100 ? limite : 100, offset);
+		return ClienteConverter.convertListToDto(clientes);
 	}
 }

@@ -3,6 +3,8 @@ package br.com.softnunes.cadastroclientes.application.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import br.com.softnunes.cadastroclientes.entities.Estado;
+
 @JsonInclude(Include.NON_NULL)
 public class CidadeDTO {
 	
@@ -10,11 +12,16 @@ public class CidadeDTO {
 	
 	private String nome;
 	
-	private EstadoDTO estado;
+	private Estado estado;
 	
 	public CidadeDTO() {}
 
-	public CidadeDTO(Integer id, String nome, EstadoDTO estado) {
+	public CidadeDTO(Integer id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
+	
+	public CidadeDTO(Integer id, String nome, Estado estado) {
 		this.id = id;
 		this.nome = nome;
 		this.estado = estado;
@@ -36,11 +43,11 @@ public class CidadeDTO {
 		this.nome = nome;
 	}
 
-	public EstadoDTO getEstado() {
+	public Estado getEstado() {
 		return estado;
 	}
 
-	public void setEstado(EstadoDTO estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 	

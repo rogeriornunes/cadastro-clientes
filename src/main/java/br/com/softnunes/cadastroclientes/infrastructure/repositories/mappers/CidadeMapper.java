@@ -11,7 +11,7 @@ import br.com.softnunes.cadastroclientes.entities.Cidade;
 )
 public interface CidadeMapper {
 	
-	CidadeDTO toDTO(Cidade cidadeEntity);
+	CidadeDTO toDTO(Cidade cidade);
 	
 	Cidade fromDTO(CidadeDTO cidadeDTO);
 }
