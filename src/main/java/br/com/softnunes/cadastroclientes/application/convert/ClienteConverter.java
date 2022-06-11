@@ -31,8 +31,6 @@ public class ClienteConverter {
 		endereco.setNumero(clienteDTO.getEndereco().getNumero());
 		endereco.setComplemento(clienteDTO.getEndereco().getComplemento());
 		
-		//cliente.setEndereco(EnderecoConverter.convertToEndereco(clienteDTO.getEndereco()));
-		
 		Cidade cidade = new Cidade();
 		cidade.setNome(clienteDTO.getCidade().getNome());
 		
@@ -43,12 +41,6 @@ public class ClienteConverter {
 		cliente.setEndereco(endereco);
 		cidade.setEstado(estado);
 		cliente.setCidade(cidade);
-		
-		/*Cidade cidade = new Cidade();
-		cidade.setEstado(EstadoConverter.convertToEstado(clienteDTO.getCidade().getEstado()));
-		cliente.setCidade(CidadeConverter.convertToCidade(clienteDTO.getCidade()));
-		cliente.setCidade(cidade);*/
-		
 		return cliente;
 	}
 	
@@ -63,8 +55,6 @@ public class ClienteConverter {
 		clienteDTO.setSexo(cliente.getSexo());
 		clienteDTO.setTelefone(cliente.getTelefone());
 		
-		//clienteDTO.setEndereco(EnderecoConverter.convertToDTO(cliente.getEndereco()));
-		
 		EnderecoDTO enderecoDTO = new EnderecoDTO();
 		enderecoDTO.setRua(cliente.getEndereco().getRua());
 		enderecoDTO.setCep(cliente.getEndereco().getCep());
@@ -77,33 +67,18 @@ public class ClienteConverter {
 		EstadoDTO estadoDTO = new EstadoDTO();
 		estadoDTO.setNome(cliente.getCidade().getEstado().getNome());
 		estadoDTO.setSigla(cliente.getCidade().getEstado().getSigla());
-		
-		/*CidadeDTO cidadeDTO = new CidadeDTO();
-		cidadeDTO.setEstado(EstadoConverter.convertToDTO(cliente.getCidade().getEstado()));
-		clienteDTO.setCidade(CidadeConverter.convertToDTO(cliente.getCidade()));
-		clienteDTO.setCidade(cidadeDTO);*/
-		
 		return clienteDTO;
 	}
 
+	public static List<ClienteDTO> convertListToDto(List<Cliente> clientes) {
+		List<ClienteDTO> listClienteDTO = clientes.stream()
+						.map(cliente -> new ClienteDTO(cliente.getId(), cliente.getNomeCompleto(),
+										cliente.getEmail(), cliente.getSexo(),
+										cliente.getDataNascimento(), cliente.getCidade(),
+										cliente.getTelefone(), cliente.getCpf(), cliente.getIdade(),
+										cliente.getEndereco()))
+						.collect(Collectors.toList());
+		return listClienteDTO;
 
-	 public static List<ClienteDTO> convertListToDto(List<Cliente> clientes) {
-		 
-		 
-		 List<ClienteDTO> listClienteDTO = clientes.stream().map(
-					        cliente -> new ClienteDTO(cliente.getId(),
-					        				cliente.getNomeCompleto(), 
-					        				cliente.getEmail(), 
-					        				cliente.getSexo(), 
-					        				cliente.getDataNascimento(), 
-					        				cliente.getCidade(), 
-					        				cliente.getTelefone(), 
-					        				cliente.getCpf(), 
-					        				cliente.getIdade(), 
-					        				cliente.getEndereco())
-					).collect(Collectors.toList());
-		 
-		 return listClienteDTO;
-	     
-	    }
+	}
 }
