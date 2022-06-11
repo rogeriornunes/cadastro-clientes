@@ -15,6 +15,7 @@ import br.com.softnunes.cadastroclientes.infrastructure.repositories.ClienteRepo
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.mappers.ClienteMapper;
 import br.com.softnunes.cadastroclientes.services.CidadeService;
 import br.com.softnunes.cadastroclientes.services.ClienteService;
+import br.com.softnunes.cadastroclientes.services.EnderecoService;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -26,6 +27,9 @@ public class ClienteServiceImpl implements ClienteService {
 	private CidadeService cidadeService;
 	
 	@Autowired
+	private EnderecoService enderecoService;
+	
+	@Autowired
 	private ClienteMapper clienteMapper;
 	
 	@Override
@@ -33,12 +37,14 @@ public class ClienteServiceImpl implements ClienteService {
 		try {
 			if (clienteRepository.findByEmail(clienteDTO.getEmail()).isPresent()) {
 				throw new RuntimeException("Já existe um usuário com o mesmo e-mail cadastrado.");
-			}
-			
-			Cliente cliente = this.clienteMapper.fromDTO(clienteDTO);
-			
-			cliente.setCidade(cidadeService.buscarPorNome(clienteDTO.getCidade().getNome()));
-			cliente.setEndereco(enderecoService.buscarPorCepNumero(clienteDTO.getEndereco().getCep(), clienteDTO.getEndereco().getNumero()));
+			}	
+			Cliente cliente = this.clienteMapper.fromDTO(clienteDTO);	
+			String nomeCidade = clienteDTO.getCidade().getNome();
+			String sigla =  clienteDTO.getCidade().getEstado().getSigla();
+			String cep = clienteDTO.getEndereco().getCep();
+			Integer numero = clienteDTO.getEndereco().getNumero();
+			cliente.setCidade(cidadeService.buscarPorNomeAndSiglaEstado(nomeCidade, sigla));
+			cliente.setEndereco(enderecoService.buscarPorCepNumero(cep, numero));
 			this.clienteRepository.saveAndFlush(cliente);
 			
 		} catch (Exception e) {
@@ -53,8 +59,14 @@ public class ClienteServiceImpl implements ClienteService {
 		try {
 			Cliente cliente = clienteMapper.fromDTO(clienteDTO);
 			
-			if (clienteDTO.getCidade() != null && clienteDTO.getCidade().getEstado() != null) {
-				cliente.setCidade(cidadeService.buscarPorNomeAndSiglaEstado(clienteDTO.getCidade().getNome(), clienteDTO.getCidade().getEstado().getSigla()));
+			if (clienteDTO.getCidade() != null && clienteDTO.getCidade().getEstado() != null &&
+				clienteDTO.getEndereco() != null) {
+				String nomeCidade = clienteDTO.getCidade().getNome();
+				String sigla =  clienteDTO.getCidade().getEstado().getSigla();
+				String cep = clienteDTO.getEndereco().getCep();
+				Integer numero = clienteDTO.getEndereco().getNumero();
+				cliente.setCidade(cidadeService.buscarPorNomeAndSiglaEstado(nomeCidade, sigla));
+				cliente.setEndereco(enderecoService.buscarPorCepNumero(cep, numero));
 			}	
 			this.clienteRepository.save(cliente);
 			
