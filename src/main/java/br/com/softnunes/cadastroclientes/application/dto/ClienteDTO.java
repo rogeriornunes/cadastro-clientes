@@ -3,7 +3,6 @@ package br.com.softnunes.cadastroclientes.application.dto;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -14,7 +13,6 @@ import br.com.softnunes.cadastroclientes.utils.enums.SexoEnum;
 @JsonInclude(Include.NON_NULL)
 public class ClienteDTO {
 	
-	@JsonIgnore
 	private Integer id;
 	
 	private String nomeCompleto;

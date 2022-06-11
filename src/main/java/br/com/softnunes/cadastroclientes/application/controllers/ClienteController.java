@@ -62,12 +62,6 @@ public class ClienteController {
 		return ResponseEntity.ok(clienteService.buscarClientePorCpf(cpf));
 	}
 	
-	@GetMapping(path = "/buscar-cliente-por-email/{email}")
-	@ApiOperation(value = "Busca um cliente por ID")
-	public ResponseEntity<ClienteDTO> buscarClientePorEmail(@PathVariable("email") String email) {
-		return ResponseEntity.ok(clienteService.buscarClientePorEmail(email));
-	}
-	
 	@GetMapping(path = "/buscar-cliente-por-nome/{nome}")
 	@ApiOperation(value = "Busca um cliente pelo nome")
 	public ResponseEntity<ClienteDTO> buscarClientePorNome(@PathVariable("nome") String nome) {

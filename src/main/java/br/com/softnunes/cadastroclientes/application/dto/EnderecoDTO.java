@@ -1,16 +1,17 @@
 package br.com.softnunes.cadastroclientes.application.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class EnderecoDTO {
 
-	@JsonIgnore
 	private Integer id;
-	private String rua;
-	private String cep;
-	private String complemento;
-	private Integer numero;
 	
+	private String rua;
+	
+	private String cep;
+	
+	private String complemento;
+	
+	private Integer numero;
+
 	public EnderecoDTO() {}
 
 	public EnderecoDTO(Integer id, String rua, String cep, String complemento, Integer numero) {

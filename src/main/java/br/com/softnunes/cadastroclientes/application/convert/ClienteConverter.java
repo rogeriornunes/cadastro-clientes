@@ -36,12 +36,12 @@ public class ClienteConverter {
 		Cidade cidade = new Cidade();
 		cidade.setNome(clienteDTO.getCidade().getNome());
 		
-		EstadoDTO estado = new EstadoDTO();
+		Estado estado = new Estado();
 		estado.setNome(clienteDTO.getCidade().getEstado().getNome());
 		estado.setSigla(clienteDTO.getCidade().getEstado().getSigla());
 		
 		cliente.setEndereco(endereco);
-		//cidade.setEstado(estado);
+		cidade.setEstado(estado);
 		cliente.setCidade(cidade);
 		
 		/*Cidade cidade = new Cidade();
