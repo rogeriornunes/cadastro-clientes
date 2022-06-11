@@ -22,7 +22,7 @@ import br.com.softnunes.cadastroclientes.services.ClienteService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(path = "/v1/clientes", produces = { "application/json; charset=utf-8" })
+@RequestMapping(path = "/v1/clientes")
 public class ClienteController {
 	
 	@Autowired
@@ -32,7 +32,6 @@ public class ClienteController {
 	@ApiOperation(value = "Cadastra um novo cliente") 
 	public ResponseEntity<HttpStatus> novoCliente(@Valid @RequestBody ClienteDTO clienteDTO) {
 		clienteService.novoCliente(clienteDTO);
-		
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
@@ -40,13 +39,13 @@ public class ClienteController {
 	@ApiOperation(value = "Editar um cliente")
 	public ResponseEntity<HttpStatus> editarCliente(@RequestBody ClienteDTO clienteDTO) {
 		clienteService.editarCliente(clienteDTO);
-		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@DeleteMapping(path = "/remover-cliente-por-id/{id}")
 	@ApiOperation(value = "Remover cliente por ID")
 	public ResponseEntity<HttpStatus> removerClientePorID(@PathVariable("id") Integer id) {
+		clienteService.removerCliente(id);
 		return new ResponseEntity<>(HttpStatus.OK);	
 	}
 	

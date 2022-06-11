@@ -21,7 +21,7 @@ import br.com.softnunes.cadastroclientes.utils.enums.SexoEnum;
 /*
  * Esta classe é responsável por inserir dados de testes no banco, caso ele esteja vazio.
  * Usada apenas em teste.
- * Cria 2 instâncias de cada: usuário, estado e cidade.
+ * Cria 2 instâncias de cada: usuário, estado, cidade e endereco.
  */
 
 @Component
@@ -93,7 +93,7 @@ public class DBInit {
 				
 				endereco.setRua("27");
 				endereco.setCep("74355435");
-				endereco.setNumero(0);
+				endereco.setNumero(15);
 				endereco.setComplemento("QD 1 LT 15");
 				this.enderecoRepository.saveAndFlush(endereco);
 				
@@ -107,7 +107,7 @@ public class DBInit {
 				cliente.setSexo(SexoEnum.M);
 				cliente.setCidade(this.cidadeRepository.findByNome("Porto Alegre").get());
 				cliente.setEndereco(this.enderecoRepository.findByEnderecoPorCepNumero("74355502", 270).get());
-				cliente.setDataNascimento(new Date());
+				cliente.setDataNascimento(new Date(1990-11-18));
 				cliente.setEmail("teste@teste.com.br");
 				cliente.setCpf("12137274051");
 				cliente.setTelefone(1234567897L);
@@ -119,7 +119,7 @@ public class DBInit {
 				cliente.setSexo(SexoEnum.M);
 				cliente.setCidade(this.cidadeRepository.findByNome("Belo Horizonte").get());
 				cliente.setEndereco(this.enderecoRepository.findByEnderecoPorCepNumero("74355435", 0).get());
-				cliente.setDataNascimento(new Date());
+				cliente.setDataNascimento(new Date(2009-10-15));
 				cliente.setEmail("usuario@usuario.com.br");
 				cliente.setCpf("22992044075");
 				cliente.setTelefone(1234567895L);

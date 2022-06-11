@@ -8,4 +8,6 @@ public interface EstadoService {
 	void cadastrarEstado(EstadoDTO estadoDTO);
 	
 	Estado findBySigla(String sigla);
+
+	void removerEstado(Integer id);
 }

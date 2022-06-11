@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.softnunes.cadastroclientes.application.convert.CidadeConverter;
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO;
-import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO.CidadeInterfaceDTO;
 import br.com.softnunes.cadastroclientes.entities.Cidade;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.CidadeRepository;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.mappers.CidadeMapper;
@@ -72,5 +71,12 @@ public class CidadeServiceImpl implements CidadeService {
 	@Override
 	public List<CidadeDTO> buscaCidadePelaSiglaEstado(String sigla, Integer limite, Integer offset) {
 		return  CidadeConverter.convertListToDto(cidadeRepository.buscaCidadesPelaSiglaEstado(sigla, limite < 100 ? limite : 100, offset));
+	}
+
+	@Override
+	public void removerCidade(Integer id) {
+		if (cidadeRepository.existsById(id)) {
+			cidadeRepository.deleteById(id);
+		}
 	}
 }

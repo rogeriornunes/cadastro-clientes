@@ -14,8 +14,6 @@ public interface ClienteService {
 	
 	ClienteDTO buscarClientePorID(Integer id);
 	
-	ClienteDTO buscarClientePorEmail(String email);
-	
 	ClienteDTO buscarClientePorNome(String nome);
 
 	ClienteDTO buscarClientePorCpf(String cpf);

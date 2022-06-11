@@ -33,6 +33,13 @@ public class EnderecoServiceImpl implements EnderecoService {
 		return endereco.get();	
 	}
 	
+	@Override
+	public void removerEndereco(Integer id) {
+		if (enderecoRepository.existsById(id)) {
+			enderecoRepository.deleteById(id);
+		}
+	}
+	
 	private String getMensagemException(String cep, Integer numero) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("O endereço no CEP: ");

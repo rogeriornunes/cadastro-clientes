@@ -8,4 +8,6 @@ public interface EnderecoService {
 	void cadastrarEndereco(EnderecoDTO enderecoDTO);	
 	
 	Endereco buscarPorCepNumero(String cep, Integer numero);
+
+	void removerEndereco(Integer id);
 }

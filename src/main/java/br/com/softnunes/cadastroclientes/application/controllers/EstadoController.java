@@ -23,7 +23,6 @@ public class EstadoController {
 	@ApiOperation(value = "Cadastra um novo Estado")
 	public ResponseEntity<HttpStatus> cadastrarNovoEstado(@RequestBody EstadoDTO estadoDTO) {
 		estadoService.cadastrarEstado(estadoDTO);
-		
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 }

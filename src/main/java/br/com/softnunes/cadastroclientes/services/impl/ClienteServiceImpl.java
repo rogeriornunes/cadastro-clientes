@@ -16,12 +16,16 @@ import br.com.softnunes.cadastroclientes.infrastructure.repositories.mappers.Cli
 import br.com.softnunes.cadastroclientes.services.CidadeService;
 import br.com.softnunes.cadastroclientes.services.ClienteService;
 import br.com.softnunes.cadastroclientes.services.EnderecoService;
+import br.com.softnunes.cadastroclientes.services.EstadoService;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
 	
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EstadoService estadoService;
 	
 	@Autowired
 	private CidadeService cidadeService;
@@ -76,21 +80,16 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 	
 	@Override
-	public void removerCliente(Integer id) {	
-		this.clienteRepository.deleteById(id);
+	public void removerCliente(Integer id) {
+		if (this.clienteRepository.existsById(id)) {
+			clienteRepository.deleteById(id);
+		}
 	}
 	
 	@Override
 	public ClienteDTO buscarClientePorID(Integer id) {		
 		return clienteMapper.toDTO(clienteRepository.findById(id).orElseGet(() -> {
 			throw new NoSuchElementException("Nenhum usuário foi encontrado com o ID " + id + ".");
-		}));
-	}
-	
-	@Override
-	public ClienteDTO buscarClientePorEmail(String email) {	
-		return clienteMapper.toDTO(clienteRepository.findByEmail(email).orElseGet(() -> {
-			throw new NoSuchElementException("Nenhum usuário foi encontrado com o email: " + email + ".");
 		}));
 	}
 	

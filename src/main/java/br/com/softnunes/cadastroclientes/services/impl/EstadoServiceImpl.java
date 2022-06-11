@@ -31,4 +31,11 @@ public class EstadoServiceImpl implements EstadoService {
 			throw new NoSuchElementException("Nenhum Estado foi encontrado com a sigla '" + sigla + "'.");
 		});
 	}
+	
+	@Override
+	public void removerEstado(Integer id) {
+		if (estadoRepository.existsById(id)) {
+			estadoRepository.deleteById(id);
+		}
+	}
 }

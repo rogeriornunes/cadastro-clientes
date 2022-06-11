@@ -18,4 +18,6 @@ public interface CidadeService {
 	List<CidadeDTO> buscaCidadePeloNomeEstado(String nome, Integer limite, Integer offset);
 	
 	List<CidadeDTO> buscaCidadePelaSiglaEstado(String sigla, Integer limite, Integer offset);
+	
+	void removerCidade(Integer id);
 }
