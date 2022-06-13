@@ -1,23 +1,63 @@
-# cadastro-clientes
-Api de Gerenciamento de Clientes
+# API Cadastro de Clientes
+
+## Descrição
+API que gerencia um cadastro de clientes.
+
+## Funcionalidades
+
+* Cadastrar cliente
+* Cadastrar Endereço
+* Cadastrar Estado e Cidade;
+* Remover cliente;
+* Editar cliente;
+* Buscar clientes e cidades;
+
+## Powered By
+
+* Spring Boot 2.1.1.RELEASE;
+* MySQL 5.7.38;
+* FlyWay (migrations);
+* Swagger;
+* Java 8;
+* Docker-Compose;
+
+**Na execução do Docker-Compose, o banco de dados será automaticamente criado, utilizando MYSQL.
+
+## Como Usar
+### Docker-Compose
+
+Baixa ou clone o projeto, faça o build do pacote da  aplicação estando dentro do diretorio do projeto, execute o comando abaixo:
+ `mvn package`
 
 
+Com o Docker e Docker-Compose instalados na máquina, acesse a pasta do projeto e rode o comando `docker-compose up --build --force-recreate`. 
+Após execução deste será criado a imagem Docker da aplicação, será criado o container no qual irar executar imagem do banco MYSQL e aplicação conforme abaixo:      
+
+* Banco de dados
+container_name: softnunes-mysql 
+image: mysql/mysql-server:5.7 
+
+* Aplicação
+container_name: cadastro-clientes_app
+image: cadastro-clientes_app_1
+
+Aguarde alguns segundos e tente acessar qualquer endpoint (["Swagger, Endpoints"](#swagger-endpoints)).
 
 
+## Swagger, Endpoints 
 
-Criação da Imagem Docker executando o Dockerfile
+A API dispõe de acesso ao Swagger para fácil utilização. Após subir o serviço, acesse http://localhost:8080/swagger-ui.html.
 
-Entendendo a  configuração no pom.xml
-Dentro da tag configuration, adicionamos a tag useMavenSettingsForAuth, como o nome já diz, estamos ativando a autenticação via settings do maven. Lembre de  substituir username, password email com as suas credenciais.
+Os endpoints disponíveis estão presentes nele.
 
-A configuração em si é muito simples, além de incluir a dependência do dockerfile-maven também adicionamos algumas tags, como a execution que incluindo uma etapa no ciclo de construção do maven para o build e push da imagem. Não necessária para criar uma imagem docker, apenas quando for enviar a imagem para um repositório.
-Na tag repository, informei meu docker ID e o nome que queremos para a imagem. Se você possui um um docker ID, informe no lugar de docker_id [username], isso servirá para enviarmos para o docker hub.
-Na tag com o nome de tag será a versão/tag da imagem.
-E por fim, temos a tag JAR_FILE, que nada mais é do que o nosso pacote .jar.
+## Dados de Testes
 
-Executando o Dockerfile e Enviando a imagem para o Docker Hub (registro)
+A aplicação cria alguns dados para testes, **caso o banco de dados estiver vazio**.
 
-Execular via linha de comando o Dockfile pelo plugin do maven 
+São dois usuários, 2 cidades,  2 Estados e 23 Endereços.
 
-mvn package executa e cria a imagem local latest e snapshot
-mvn dockerfile:push envia imagem para Docker Hub remoto.
+## Tabelas e Migrations
+As tabelas usadas pelo MySQL estão no arquivo `./src/main/resources/db/migration`. Usamos o [FlyWay](https://flywaydb.org/) para criar as tabelas no banco e versionar as migrations. **O Hibernate não cria ou atualiza as tabelas.**
+
+## Testes 
+Há alguns testes de integração na controllers na pasta `./src/test/java/br/com/softnunes/cadastroclientes/controllers`.
