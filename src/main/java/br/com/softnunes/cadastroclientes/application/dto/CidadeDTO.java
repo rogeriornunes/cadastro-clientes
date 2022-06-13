@@ -1,8 +1,12 @@
 package br.com.softnunes.cadastroclientes.application.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import br.com.softnunes.cadastroclientes.entities.Cidade;
 import br.com.softnunes.cadastroclientes.entities.Estado;
 
 @JsonInclude(Include.NON_NULL)
@@ -49,6 +53,13 @@ public class CidadeDTO {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+	
+	public List<CidadeDTO> convertListToDto(List<Cidade> cidades) {
+		List<CidadeDTO> listCidadeDTO = cidades.stream()
+						.map(cidade -> new CidadeDTO(cidade.getId(), cidade.getNome()))
+						.collect(Collectors.toList());
+		return listCidadeDTO;
 	}
 	
 	public interface CidadeInterfaceDTO {

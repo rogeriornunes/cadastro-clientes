@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.softnunes.cadastroclientes.application.convert.CidadeConverter;
 import br.com.softnunes.cadastroclientes.application.dto.CidadeDTO;
 import br.com.softnunes.cadastroclientes.entities.Cidade;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.CidadeRepository;
@@ -55,7 +54,6 @@ public class CidadeServiceImpl implements CidadeService {
 	@Override
 	public Cidade buscarPorNomeAndSiglaEstado(String nome, String siglaEstado) {
 		Optional<Cidade> cidade = cidadeRepository.findByNomeAndSiglaEstado(nome, siglaEstado);
-		
 		if (!cidade.isPresent()) {
 			throw new NoSuchElementException("A cidade '" + nome + "' não existe.");		
 		}
@@ -65,12 +63,15 @@ public class CidadeServiceImpl implements CidadeService {
 	
 	@Override
 	public List<CidadeDTO> buscaCidadePeloNomeEstado(String nome, Integer limite, Integer offset) {
-		return CidadeConverter.convertListToDto(cidadeRepository.buscaCidadesPeloNomeEstado(nome, limite < 100 ? limite : 100, offset));
+		CidadeDTO cidadeDTO = new CidadeDTO();
+		return cidadeDTO.convertListToDto(cidadeRepository.buscaCidadesPeloNomeEstado(nome,
+						limite < 100 ? limite : 100, offset));
 	}
 	
 	@Override
 	public List<CidadeDTO> buscaCidadePelaSiglaEstado(String sigla, Integer limite, Integer offset) {
-		return  CidadeConverter.convertListToDto(cidadeRepository.buscaCidadesPelaSiglaEstado(sigla, limite < 100 ? limite : 100, offset));
+		CidadeDTO cidadeDTO = new CidadeDTO();
+		return  cidadeDTO.convertListToDto(cidadeRepository.buscaCidadesPelaSiglaEstado(sigla, limite < 100 ? limite : 100, offset));
 	}
 
 	@Override

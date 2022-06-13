@@ -61,4 +61,12 @@ public class EnderecoDTO {
 	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
+	
+	public interface EnderecoInterfaceDTO {
+		Integer getId();
+		String getRua();
+		String getCep();
+		String getComplemento();
+		Integer getNumero();
+	}
 }

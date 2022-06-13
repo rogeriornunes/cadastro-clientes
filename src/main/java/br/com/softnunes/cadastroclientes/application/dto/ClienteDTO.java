@@ -1,12 +1,15 @@
 package br.com.softnunes.cadastroclientes.application.dto;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import br.com.softnunes.cadastroclientes.entities.Cidade;
+import br.com.softnunes.cadastroclientes.entities.Cliente;
 import br.com.softnunes.cadastroclientes.entities.Endereco;
 import br.com.softnunes.cadastroclientes.utils.enums.SexoEnum;
 
@@ -139,6 +142,17 @@ public class ClienteDTO {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	
+	public List<ClienteDTO> convertListToDto(List<Cliente> clientes) {
+		List<ClienteDTO> listClienteDTO = clientes.stream()
+						.map(cliente -> new ClienteDTO(cliente.getId(), cliente.getNomeCompleto(),
+										cliente.getEmail(), cliente.getSexo(),
+										cliente.getDataNascimento(), cliente.getCidade(),
+										cliente.getTelefone(), cliente.getCpf(), cliente.getIdade(),
+										cliente.getEndereco()))
+						.collect(Collectors.toList());
+		return listClienteDTO;
 	}
 }	
 	

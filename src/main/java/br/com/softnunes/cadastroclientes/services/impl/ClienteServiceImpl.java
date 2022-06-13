@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.softnunes.cadastroclientes.application.convert.ClienteConverter;
 import br.com.softnunes.cadastroclientes.application.dto.ClienteDTO;
 import br.com.softnunes.cadastroclientes.entities.Cliente;
 import br.com.softnunes.cadastroclientes.infrastructure.repositories.ClienteRepository;
@@ -35,7 +34,7 @@ public class ClienteServiceImpl implements ClienteService {
 	
 	@Autowired
 	private ClienteMapper clienteMapper;
-	
+
 	@Override
 	public void novoCliente(ClienteDTO clienteDTO) {
 		try {
@@ -108,7 +107,8 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public List<ClienteDTO> listaClientes(Integer limite, Integer offset) {
+		ClienteDTO clienteDTO = new ClienteDTO();
 		List<Cliente> clientes = clienteRepository.listaClientes(limite < 100 ? limite : 100, offset);
-		return ClienteConverter.convertListToDto(clientes);
+		return clienteDTO.convertListToDto(clientes);
 	}
 }
