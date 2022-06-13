@@ -118,7 +118,7 @@ public class DBInit {
 				cliente.setNomeCompleto("Usuário");
 				cliente.setSexo(SexoEnum.M);
 				cliente.setCidade(this.cidadeRepository.findByNome("Belo Horizonte").get());
-				cliente.setEndereco(this.enderecoRepository.findByEnderecoPorCepNumero("74355435", 0).get());
+				cliente.setEndereco(this.enderecoRepository.findByEnderecoPorCepNumero("74355435", 15).get());
 				cliente.setDataNascimento(new Date(2009-10-15));
 				cliente.setEmail("usuario@usuario.com.br");
 				cliente.setCpf("22992044075");

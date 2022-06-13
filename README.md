@@ -60,4 +60,10 @@ São dois usuários, 2 cidades,  2 Estados e 23 Endereços.
 As tabelas usadas pelo MySQL estão no arquivo `./src/main/resources/db/migration`. Usamos o [FlyWay](https://flywaydb.org/) para criar as tabelas no banco e versionar as migrations. **O Hibernate não cria ou atualiza as tabelas.**
 
 ## Testes 
-Há alguns testes de integração na controllers na pasta `./src/test/java/br/com/softnunes/cadastroclientes/controllers`.
+Há alguns testes de integração na controllers na pasta 
+`./src/test/java/br/com/softnunes/cadastroclientes/controllers`. 
+`./src/test/java/br/com/softnunes/cadastroclientes/repository`.
+`./src/test/java/br/com/softnunes/cadastroclientes/entity`.
+Ao executá-los, a aplicação utilizará um segundo banco de dados (o H2 in-memory), independente do MySQL principal, mas que terá o mesmo schema.
+
+O arquivo ./src/test/resources/application.properties gerencia a conexão dos testes com o H2.
